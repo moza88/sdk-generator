@@ -1,0 +1,47 @@
+/*
+ * Copyright 2019 ProximaX Limited. All rights reserved.
+ * Use of this source code is governed by the Apache 2.0
+ * license that can be found in the LICENSE file.
+ */
+
+openApiGenerate {
+    generatorName = "java"
+    inputSpec = "$rootDir/spec/openapi.yaml"
+    outputDir = "$rootDir/build/gen/src"
+    apiPackage = "com.mindegg.sdk.generator.controller".toString()
+    invokerPackage = "com.mindegg.sdk.generator.invoker".toString()
+    modelPackage = "com.mindegg.sdk.generator.model".toString()
+    generateAliasAsModel = false
+    generateModelTests = false
+    generateModelDocumentation = false
+    generateApiTests = false
+    generateApiDocumentation = false
+    configOptions = [
+            sourceFolder: "src",
+            dateLibrary: "java11",
+//            library: "resttemplate",
+            hideGenerationTimestamp: "true",
+            useTags: "true"
+    ]
+}
+
+task removeMetafiles(type: Delete) {
+    delete (
+            "$rootDir/src/gen/java/.openapi-generator",
+            "$rootDir/src/gen/java/api",
+            "$rootDir/src/gen/java/gradle",
+            "$rootDir/src/gen/java/src",
+            "$rootDir/src/gen/java/.gitignore",
+            "$rootDir/src/gen/java/.openapi-generator-ignore",
+            "$rootDir/src/gen/java/.travis.yml",
+            "$rootDir/src/gen/java/build.gradle",
+            "$rootDir/src/gen/java/build.sbt",
+            "$rootDir/src/gen/java/git_push.sh",
+            "$rootDir/src/gen/java/gradle.properties",
+            "$rootDir/src/gen/java/gradlew",
+            "$rootDir/src/gen/java/gradlew.bat",
+            "$rootDir/src/gen/java/pom.xml",
+            "$rootDir/src/gen/java/README.md",
+            "$rootDir/src/gen/java/settings.gradle",
+    )
+}
